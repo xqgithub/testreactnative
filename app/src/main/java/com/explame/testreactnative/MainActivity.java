@@ -18,6 +18,7 @@ import com.explame.testreactnative.constants.FileConstant;
 import com.explame.testreactnative.hotupdate.HotUpdate;
 import com.explame.testreactnative.http.ApiService;
 import com.explame.testreactnative.http.RetrofitServiceManager;
+import com.explame.testreactnative.preloadreact.ReactNativePreLoader;
 import com.explame.testreactnative.utils.LogUtils;
 
 import java.io.File;
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mactivity = MainActivity.this;
-        requestExternalStoragePermission();
+//        requestExternalStoragePermission();
 
         btn1 = (Button) findViewById(R.id.btn1);
         btn2 = (Button) findViewById(R.id.btn2);
@@ -64,6 +65,14 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            ReactNativePreLoader.preLoad(MainActivity.this, "navigation");
+        }
+    }
 
     public void intentToJump(Context context, Class<?> cls, int flag) {
         Intent intent = new Intent(context, cls);
@@ -90,24 +99,6 @@ public class MainActivity extends AppCompatActivity {
 
         downloadConfig("http://192.168.123.178/wan.zip");
     }
-
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        switch (keyCode) {
-            case KeyEvent.KEYCODE_BACK:
-                finish();
-                System.exit(0);
-                break;
-        }
-        return super.onKeyDown(keyCode, event);
-    }
-
 
     private static final int REQUEST_EXTERNAL_STORAGE_PERMISSION = 0;
 
@@ -193,4 +184,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+                finish();
+                System.exit(0);
+                break;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }

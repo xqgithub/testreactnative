@@ -120,6 +120,4 @@ public class HotUpdate {
             e.printStackTrace();
         }
     }
-
-
 }
