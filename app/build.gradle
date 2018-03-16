@@ -33,4 +33,22 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.0.1'
     compile 'com.facebook.react:react-native:0.54.2'  // From node_modules
+
+
+    compile 'io.reactivex:rxandroid:1.2.1'//引入rxandroid
+    compile 'io.reactivex:rxjava:1.2.2'//引入rxjava
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'//引入retrofit
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'//引入json转换器，方便将返回的数据转换为json格式
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'//引入rxjava适配器，方便rxjava与retrofit的结合
+    compile 'com.squareup.okhttp3:okhttp:3.4.0'//引入okhttp
+    compile 'com.squareup.okhttp3:logging-interceptor:3.4.0'//引入Log拦截器，方便DEBUG模式输出log信息
+
+    // Stetho
+    compile 'com.facebook.stetho:stetho:1.4.1'
+    compile 'com.facebook.stetho:stetho-okhttp3:1.4.1'
+    compile 'org.bouncycastle:bcprov-jdk15on:1.52'
+    compile('com.googlecode.json-simple:json-simple:1.1.1') {
+        exclude group: 'junit', module: 'junit'
+        exclude group: 'org.hamcrest', module: 'hamcrest-core'
+    }
 }

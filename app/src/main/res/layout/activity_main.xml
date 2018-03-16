@@ -10,8 +10,21 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.explame.testreactnative.MainActivity">
 
-    <TextView
+    <Button
+        android:id="@+id/btn1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"/>
+        android:layout_centerHorizontal="true"
+        android:text="跳转到HelloReactActivity"/>
+
+    <Button
+        android:id="@+id/btn2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="加载最新的JsBundle文件"/>
+
+
 </RelativeLayout>
