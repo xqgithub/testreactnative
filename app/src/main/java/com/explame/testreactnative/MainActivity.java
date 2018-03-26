@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private Activity mactivity;
     private Button btn1;
     private Button btn2;
+    private Button btn3;
 
 
     @Override
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
         btn1 = (Button) findViewById(R.id.btn1);
         btn2 = (Button) findViewById(R.id.btn2);
+        btn3 = (Button) findViewById(R.id.btn3);
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,6 +65,12 @@ public class MainActivity extends AppCompatActivity {
                 checkVersion();
             }
         });
+        btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intentToJump(mactivity, TestViewActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            }
+        });
     }
 
 
@@ -70,7 +78,8 @@ public class MainActivity extends AppCompatActivity {
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         if (hasFocus) {
-            ReactNativePreLoader.preLoad(MainActivity.this, "navigation");
+            ReactNativePreLoader.preLoad(MainActivity.this, "helloreactnative");
+            ReactNativePreLoader.preLoad(MainActivity.this, "helloreactnative");
         }
     }
 

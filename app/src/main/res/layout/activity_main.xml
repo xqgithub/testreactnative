@@ -11,20 +11,28 @@
     tools:context="com.explame.testreactnative.MainActivity">
 
     <Button
-        android:id="@+id/btn1"
+        android:id="@+id/btn2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="跳转到HelloReactActivity"/>
+        android:text="加载最新的JsBundle文件"/>
 
     <Button
-        android:id="@+id/btn2"
+        android:id="@+id/btn1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn2"
+        android:layout_centerHorizontal="true"
+        android:text="跳转到HelloReactActivity"/>
+
+
+    <Button
+        android:id="@+id/btn3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btn1"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:text="加载最新的JsBundle文件"/>
+        android:text="跳转到TestViewActivity"/>
 
 
 </RelativeLayout>

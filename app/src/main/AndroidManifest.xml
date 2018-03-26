@@ -27,6 +27,9 @@
         <activity
             android:name=".HelloReactActivity"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".TestViewActivity"
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name="com.facebook.react.devsupport.DevSettingsActivity"
