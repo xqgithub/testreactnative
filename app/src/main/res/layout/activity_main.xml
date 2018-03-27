@@ -34,5 +34,4 @@
         android:layout_centerHorizontal="true"
         android:text="跳转到TestViewActivity"/>
 
-
 </RelativeLayout>

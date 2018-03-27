@@ -33,10 +33,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
-
-
-    private long mDownLoadId;
-
     private Activity mactivity;
     private Button btn1;
     private Button btn2;
@@ -49,20 +45,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mactivity = MainActivity.this;
 //        requestExternalStoragePermission();
+        doPermissionApplication(mactivity, permissions[CALL_PHONE], CALL_PHONE);
 
         btn1 = (Button) findViewById(R.id.btn1);
         btn2 = (Button) findViewById(R.id.btn2);
         btn3 = (Button) findViewById(R.id.btn3);
-        btn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                intentToJump(mactivity, HelloReactActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            }
-        });
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 checkVersion();
+            }
+        });
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intentToJump(mactivity, HelloReactActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
             }
         });
         btn3.setOnClickListener(new View.OnClickListener() {
@@ -79,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         super.onWindowFocusChanged(hasFocus);
         if (hasFocus) {
             ReactNativePreLoader.preLoad(MainActivity.this, "helloreactnative");
-            ReactNativePreLoader.preLoad(MainActivity.this, "helloreactnative");
+            ReactNativePreLoader.preLoad(MainActivity.this, "testview");
         }
     }
 
@@ -109,7 +106,23 @@ public class MainActivity extends AppCompatActivity {
         downloadConfig("http://192.168.123.178/wan.zip");
     }
 
-    private static final int REQUEST_EXTERNAL_STORAGE_PERMISSION = 0;
+    private static final int REQUEST_EXTERNAL_STORAGE_PERMISSION = 1000;
+
+    /**
+     * 申请权限
+     */
+    public String[] permissions = {Manifest.permission.CALL_PHONE};
+    public static final int CALL_PHONE = 0;
+
+    public boolean doPermissionApplication(Activity mactivity, String permission, int REQUEST_CODE) {
+        if (ContextCompat.checkSelfPermission(mactivity, permission)
+                != PackageManager.PERMISSION_GRANTED) {//　没有该权限
+            ActivityCompat.requestPermissions(mactivity, new String[]{permission}, REQUEST_CODE);
+            return false;
+        }
+        return true;
+    }
+
 
     private void requestExternalStoragePermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -127,7 +140,15 @@ public class MainActivity extends AppCompatActivity {
                     System.out.println("local external storage patch is invalid as not read external storage permission");
                 }
                 break;
-            default:
+            case CALL_PHONE:
+                if (grantResults != null && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // Permission Granted 通过
+                    LogUtils.i("----->权限被通过了");
+                } else {
+                    // Permission Denied   被拒绝
+                    LogUtils.i("----->权限被拒绝了");
+                }
+                break;
         }
     }
 
@@ -209,3 +230,5 @@ public class MainActivity extends AppCompatActivity {
         return super.onKeyDown(keyCode, event);
     }
 }
+
+
