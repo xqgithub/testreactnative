@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btn1;
     private Button btn2;
     private Button btn3;
+    private Button btn4;
 
 
     @Override
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         btn1 = (Button) findViewById(R.id.btn1);
         btn2 = (Button) findViewById(R.id.btn2);
         btn3 = (Button) findViewById(R.id.btn3);
+        btn4 = (Button) findViewById(R.id.btn4);
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,6 +68,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 intentToJump(mactivity, TestViewActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            }
+        });
+        btn4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainApplication.getReactPackage().mModule.nativeCallRn("我是海贼王路飞");
             }
         });
     }

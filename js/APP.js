@@ -1,5 +1,11 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet,NativeModules } from 'react-native'
+import { View,
+Text,
+StyleSheet,
+NativeModules,
+DeviceEventEmitter,
+ToastAndroid
+} from 'react-native'
 export default class extends Component {
 
    /**
@@ -9,6 +15,18 @@ export default class extends Component {
        let phone = '13554298369';
        NativeModules.commModule.rnCallNative(phone);
     }
+
+       /**
+        * 接收原生调用
+        */
+        componentDidMount(){
+        DeviceEventEmitter.addListener('nativeCallRn',(msg)=>{
+        title = "React Native界面,收到数据：" + msg;
+        ToastAndroid.show("发送成功"+title, ToastAndroid.SHORT);
+         })
+        }
+
+
 
 
   render() {

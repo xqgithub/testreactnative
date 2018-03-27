@@ -6,6 +6,7 @@ import android.net.Uri;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.modules.core.DeviceEventManagerModule;
 
 /**
  * Created by admin on 2018/3/26.
@@ -15,6 +16,7 @@ public class CommModule extends ReactContextBaseJavaModule {
 
     private ReactApplicationContext mContext;
     public static final String MODULE_NAME = "commModule";
+    public static final String EVENT_NAME = "nativeCallRn";
 
     /**
      * 构造方法必须实现
@@ -49,6 +51,17 @@ public class CommModule extends ReactContextBaseJavaModule {
         intent.setData(Uri.parse("tel:" + phone));
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // 跳转需要添加flag, 否则报错
         mContext.startActivity(intent);
+    }
+
+
+    /**
+     * Native调用RN
+     *
+     * @param msg
+     */
+    public void nativeCallRn(String msg) {
+        mContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
+                .emit(EVENT_NAME, msg);
     }
 
 

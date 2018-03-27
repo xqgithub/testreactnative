@@ -88,6 +88,4 @@ public class MainApplication extends Application implements ReactApplication {
     public static CommPackage getReactPackage() {
         return mCommPackage;
     }
-
-
 }
